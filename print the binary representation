@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <algorithm>
+#include <cstring>
+ 
+using namespace std;
+ 
+int main()
+{
+    double input = atof("2312313.8125");
+     
+    int    i = input;
+    double d = input - i;
+     
+    string left;
+    while (i != 0)
+    {
+        left.append(1, i % 2 + '0');
+        i = i / 2;
+    }
+    reverse(left.begin(), left.end());
+     
+    string right;
+    double e = 0.00000001;
+    //while (d < 0 - e || d > e - 0)
+    while (d - 0 > e - 0) //distance from 0
+    {
+        if (right.size() > 10)
+        {
+            cout << "ERROR" << endl;
+            return 1;
+        }
+        d = d * 2;
+         
+        if (d > 1 || (d > 1 - e && d < 1 + e)) //critical
+        {
+            right.append(1, '1');
+            d = d - 1;
+        }
+        else
+        {
+            right.append(1, '0');
+        }
+    }
+     
+     
+    cout << left << '.' << right << endl;
+    return 0;
+}
